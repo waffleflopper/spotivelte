@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource/metropolis": "^4.5.3",
 		"@unsass/breakpoint": "^2.2.0",
 		"modern-normalize": "^1.1.0",
 		"svelte-preprocess": "^5.0.1"
