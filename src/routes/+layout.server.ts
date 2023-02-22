@@ -38,7 +38,6 @@ export const load: LayoutServerLoad = async ({ cookies, fetch, url }) => {
 			};
 		}
 	} else {
-		//TODO: Check for response 401 and refresh token
 		return {
 			user: null
 		};
