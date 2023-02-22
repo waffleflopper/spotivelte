@@ -1,4 +1,4 @@
-import { spotify_authorization_headers } from '$lib/helpers/utils';
+import { spotify_authorization_headers } from '$utils';
 import { error, json, type Cookies } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 

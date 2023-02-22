@@ -3,7 +3,7 @@ import { redirect, type Cookies } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { randomBytes } from 'crypto';
 import pkce from 'pkce-gen';
-import { getScope } from '$lib/helpers/utils';
+import { getScope } from '$utils';
 
 const generateRandomString = (length: number) => {
 	// let randomString = '';

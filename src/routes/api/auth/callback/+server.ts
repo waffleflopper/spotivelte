@@ -1,5 +1,5 @@
 import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, BASE_URL } from '$env/static/private';
-import { spotify_authorization_headers } from '$lib/helpers/utils';
+import { spotify_authorization_headers } from '$utils';
 import { error, redirect, type Cookies } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 

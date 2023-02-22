@@ -14,7 +14,11 @@ const config = {
 	}),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: {
+			$components: 'src/lib/components',
+			$utils: 'src/lib/helpers/utils.ts'
+		}
 	}
 };
 
