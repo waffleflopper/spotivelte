@@ -22,8 +22,11 @@ const state = generateRandomString(16);
 const challenge = pkce.create();
 const redirect_uri = `${BASE_URL}/api/auth/callback`;
 
-export const GET: RequestHandler = () => {
+export const GET: RequestHandler = ({ cookies }) => {
 	const scopeRequest = getScope(['userProfile', 'userMusic', 'image', 'streaming', 'playlists']);
+
+	cookies.set('spotify_auth_state', state);
+	cookies.set('spotify_auth_challenge_verifier', challenge.code_verifier);
 
 	throw redirect(
 		307,
