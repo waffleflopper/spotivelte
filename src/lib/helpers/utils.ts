@@ -1,3 +1,5 @@
+import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '$env/static/private';
+
 interface IDictionary {
 	[index: string]: string[];
 }
@@ -37,4 +39,11 @@ export const getScope = (options: Array<string>): string => {
 	});
 
 	return scopeString;
+};
+
+export const spotify_authorization_headers = {
+	'Content-Type': 'application/x-www-form-urlencoded',
+	Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString(
+		'base64'
+	)}`
 };
