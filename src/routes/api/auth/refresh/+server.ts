@@ -1,34 +1,49 @@
-import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '$env/static/private';
-import { error, json } from '@sveltejs/kit';
+import { spotify_authorization_headers } from '$lib/helpers/utils';
+import { error, json, type Cookies } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+
+type responseJSON = {
+	refresh_token: string;
+	access_token: string;
+};
 
 export const GET: RequestHandler = async ({ cookies, fetch }) => {
 	const refreshToken = cookies.get('refresh_token');
 
-	const refreshResponse = await fetch('https://accounts.spotify.com/api/token', {
+	const refreshResponse = await requestAuthorizationRefresh(fetch, refreshToken);
+
+	const refreshJson = await refreshResponse.json();
+
+	if (refreshJson.error) {
+		deleteAuthorizationCookies(cookies);
+		throw error(401, refreshJson.error_description);
+	}
+
+	setAuthorizationCookies(cookies, refreshJson);
+
+	return json(refreshJson);
+};
+
+function requestAuthorizationRefresh(
+	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
+	refreshToken: string | undefined
+) {
+	return fetch('https://accounts.spotify.com/api/token', {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString(
-				'base64'
-			)}`
-		},
+		headers: spotify_authorization_headers,
 		body: new URLSearchParams({
 			grant_type: 'refresh_token',
 			refresh_token: refreshToken || ''
 		})
 	});
+}
 
-	const refreshJson = await refreshResponse.json();
-
-	if (refreshJson.error) {
-		cookies.delete('refresh_token', { path: '/' });
-		cookies.delete('access_token', { path: '/' });
-		throw error(401, refreshJson.error_description);
-	}
-
+function setAuthorizationCookies(cookies: Cookies, refreshJson: responseJSON) {
 	cookies.set('refresh_token', refreshJson.refresh_token, { path: '/' });
 	cookies.set('access_token', refreshJson.access_token, { path: '/' });
+}
 
-	return json(refreshJson);
-};
+function deleteAuthorizationCookies(cookies: Cookies) {
+	cookies.delete('refresh_token', { path: '/' });
+	cookies.delete('access_token', { path: '/' });
+}
