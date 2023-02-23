@@ -9,17 +9,18 @@ const config = {
 
 	preprocess: preprocess({
 		scss: {
-			prependData: '@use "src/styles/_functions";@use "@unsass/breakpoint";'
-		}
+			prependData:
+				'@use "src/styles/_functions";@use "@unsass/breakpoint";@import "src/styles/_functions";',
+		},
 	}),
 
 	kit: {
 		adapter: adapter(),
 		alias: {
 			$components: 'src/lib/components',
-			$utils: 'src/lib/helpers/utils.ts'
-		}
-	}
+			$utils: 'src/lib/helpers/utils.ts',
+		},
+	},
 };
 
 export default config;

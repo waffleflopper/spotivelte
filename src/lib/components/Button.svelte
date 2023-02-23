@@ -21,8 +21,7 @@
 	this={element}
 	class="button button-{variant} {className}"
 	on:click
-	{...$$restProps}
->
+	{...$$restProps}>
 	<slot />
 </svelte:element>
 
@@ -37,6 +36,7 @@
 		padding: 7px 15px;
 		text-decoration: none;
 		&.button-solid {
+			@include color-scheme(var(--accent-color), #000);
 			background-color: var(--accent-color);
 			color: #000;
 			border: 2px solid var(--accent-color);

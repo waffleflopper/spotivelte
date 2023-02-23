@@ -7,6 +7,8 @@ type responseJSON = {
 	access_token: string;
 };
 
+/* Import and types above here */
+
 export const GET: RequestHandler = async ({ cookies, fetch }) => {
 	const refreshToken = cookies.get('refresh_token');
 
@@ -33,8 +35,8 @@ function requestAuthorizationRefresh(
 		headers: spotify_authorization_headers,
 		body: new URLSearchParams({
 			grant_type: 'refresh_token',
-			refresh_token: refreshToken || ''
-		})
+			refresh_token: refreshToken || '',
+		}),
 	});
 }
 

@@ -1,5 +1,16 @@
 @use 'sass:math';
+@use 'sass:list';
 
-    @function toRem($value) {
-        @return #{math.div($value, 16)}rem;
-    }
+@function toRem($value) {
+	@return #{math.div($value, 16)}rem;
+}
+
+@mixin color-scheme($bg, $text) {
+	@if list.length($bg) == 1 {
+		background-color: $bg;
+	} @else {
+		background-image: linear-gradient(to top right, $bg);
+	}
+
+	color: $text;
+}
