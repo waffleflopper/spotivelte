@@ -13,6 +13,7 @@ SPOTIFY_CLIENT_ID=axxxxxxxxxxxxxxxxxxxxxxxxxxxxxx1
 SPOTIFY_CLIENT_SECRET=8XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXf
 SPOTIFY_BASE_URL=https://api.spotify.com/v1
 ```
+After cloning don't forget to use `npm install` to download dependencies.
 
 ## Progress
 
