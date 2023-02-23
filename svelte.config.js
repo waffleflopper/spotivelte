@@ -19,6 +19,7 @@ const config = {
 		alias: {
 			$components: 'src/lib/components',
 			$utils: 'src/lib/helpers/utils.ts',
+			$assets: 'src/assets',
 		},
 	},
 };
