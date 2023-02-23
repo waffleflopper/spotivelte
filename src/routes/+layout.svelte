@@ -13,4 +13,13 @@
 		<LogoutButton />
 	</div>
 {/if}
-<slot />
+<div class="container">
+	<slot />
+</div>
+
+<style lang="scss">
+	.container {
+		width: 100%;
+		padding: functions.toRem(10);
+	}
+</style>
