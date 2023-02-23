@@ -10,7 +10,7 @@ const config = {
 	preprocess: preprocess({
 		scss: {
 			prependData:
-				'@use "src/styles/_functions";@use "@unsass/breakpoint";@import "src/styles/_functions";',
+				'@use "src/styles/_functions";@use "@unsass/breakpoint";@import "src/styles/mixins.scss";',
 		},
 	}),
 
