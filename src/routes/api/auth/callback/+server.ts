@@ -1,4 +1,4 @@
-import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, BASE_URL } from '$env/static/private';
+import { SPOTIFY_CLIENT_ID, BASE_URL } from '$env/static/private';
 import { spotify_authorization_headers } from '$utils';
 import { error, redirect, type Cookies } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -47,8 +47,8 @@ async function requestAuthorizationCode(
 			redirect_uri: `${BASE_URL}/api/auth/callback`,
 			grant_type: 'authorization_code',
 			code_verifier: challengeVerifier || '',
-			client_id: SPOTIFY_CLIENT_ID
-		})
+			client_id: SPOTIFY_CLIENT_ID,
+		}),
 	});
 }
 
