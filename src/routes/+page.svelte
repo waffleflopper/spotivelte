@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from '$components';
+	import LogoutButton from '$components/LogoutButton.svelte';
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -21,3 +22,4 @@
 <Button
 	element="button"
 	variant="danger">Danger</Button>
+<LogoutButton style="margin-top: 10px" />

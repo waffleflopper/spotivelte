@@ -3,7 +3,7 @@
 	import { Home, Search, ListMusic } from 'lucide-svelte';
 	import type { Icon } from 'lucide-svelte';
 	import { page } from '$app/stores';
-	import { textLogo } from '$assets';
+	import { logo } from '$assets';
 
 	type NavItem = {
 		path: string;
@@ -41,11 +41,12 @@
 	<nav aria-label="main">
 		<div class="nav-content-inner">
 			<ul class="nav-items">
-				<li>
+				<li class="header">
 					<img
 						class="navLogo"
-						src={textLogo}
+						src={logo}
 						alt="site logo" />
+					<span>Spotisvelte</span>
 				</li>
 				{#each navItems as item}
 					<li
@@ -71,8 +72,9 @@
 <style lang="scss">
 	.nav-content {
 		.navLogo {
-			max-width: 100%;
-			width: 130px;
+			max-width: 26px;
+			width: 100%;
+			margin-left: functions.toRem(5);
 		}
 
 		.nav-content-inner {
@@ -85,6 +87,14 @@
 				padding: 0;
 				margin: 20px 0 0;
 				list-style: none;
+				.header {
+					display: flex;
+					align-items: center;
+					img {
+						margin-right: 10px;
+					}
+					margin-bottom: 30px;
+				}
 				li {
 					&.active {
 						a {
