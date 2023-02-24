@@ -11,6 +11,8 @@
 		icon: ComponentType<Icon>;
 	};
 
+	/* Types and Imports Above Here */
+
 	export let desktop: boolean;
 
 	const navItems: NavItem[] = [
